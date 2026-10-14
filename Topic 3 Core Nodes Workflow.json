@@ -1,0 +1,124 @@
+{
+  "name": "Topic 3 Core Nodes Workflow.",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2658b719-3f2b-43c5-89ff-8707de304144",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "015a9b84-f651-44da-bd2d-eb396b751b52",
+              "name": "productName",
+              "value": "Wireless Mouse",
+              "type": "string"
+            },
+            {
+              "id": "c498abd5-bec7-484f-93d9-ece35e13491a",
+              "name": "basePrice",
+              "value": 25,
+              "type": "number"
+            },
+            {
+              "id": "d2db5ec6-505e-4b1f-aaf3-6536820a4984",
+              "name": "isAvailable",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "698024bd-568d-4fd8-bc00-15f4ee5ac3dc",
+      "name": "Set Original Data."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe3fa076-3c7c-4058-8871-f2a12b3695ba",
+              "name": "isAvailable",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "id": "db4afcb8-fe71-4368-b4a5-4c6586ac4f66",
+              "name": "inventoryLabel",
+              "value": "={{ $json.productName }}",
+              "type": "string"
+            },
+            {
+              "id": "562b2ffe-c59c-4a66-9f9d-bcea9115d565",
+              "name": "priceWithTax",
+              "value": "={{ $json.basePrice * 1.1 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        448,
+        0
+      ],
+      "id": "f5bb8709-79aa-4278-bef7-a9f1c678a7f8",
+      "name": "Modify&Map"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Set Original Data.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Original Data.": {
+      "main": [
+        [
+          {
+            "node": "Modify&Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "a25801b8-8ce5-4536-ab0d-345faa01488c",
+  "meta": {
+    "instanceId": "6aa2bee1a03b9f7914e8116bfa50d56f587070a7c0195adf5a4fdcae1af4b39c"
+  },
+  "nodeGroups": [],
+  "id": "8Aw3QLcCSH0RMNE7",
+  "tags": []
+}
